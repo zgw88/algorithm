@@ -34,22 +34,21 @@ const sortSquares = (nums) =>{
 }
 
 
-const sortSquers = (nums) =>{
-    let newArr = []
-    for (let i=0,j=nums.length - 1;i<=j;){
+// const sortSquers = (nums) =>{
+//     let newArr = []
+//     for (let i=0,j=nums.length - 1;i<j;i++){
+//         let left = Math.abs(nums[i])
+//         let right = Math.abs(nums[j])
+//         if(left < right){
+//             newArr.unshift(left * left)
+//             i++
+//         }else {
+//             newArr.unshift(right * right)
+//             j--
+//         }
+//     }
+//     return newArr
+// }
 
-        const left = Math.abs(nums[i])
-        const right = Math.abs(nums[j])
-        if(left < right){
-            newArr.unshift(right * right)
-            j--
-        }else {
-            newArr.unshift(left * left)
-            i++
-        }
-    }
-    return newArr
-}
-
-const newArr = sortSquers(nums)
-console.log(newArr,'newArr 112')
+const newArr = sortSquares(nums)
+console.log(newArr,'newArr 1')

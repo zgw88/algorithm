@@ -1,0 +1,25 @@
+{
+  "name": "algorithm",
+  "version": "1.0.0",
+  "description": "手撸学习",
+  "main": "index.js",
+  "scripts": {
+    "test": "learn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zgw88/algorithm.git"
+  },
+  "keywords": [
+    "algorithm"
+  ],
+  "author": "zgw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zgw88/algorithm/issues"
+  },
+  "homepage": "https://github.com/zgw88/algorithm#readme",
+  "dependencies": {
+    "react": "^17.0.2"
+  }
+}

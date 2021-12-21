@@ -38,6 +38,6 @@ const finfNums = (nums,tar) =>{
         }else{
             left = mid + 1
         }
+        return -1
     }
-    return -1
 }

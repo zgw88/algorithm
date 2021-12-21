@@ -23,21 +23,3 @@ const findNum = (nums,target) =>{
 
 const targetIndex = findNum(nums,target)
 console.log(targetIndex,'targetIndex')
-
-
-const finfNums = (nums,tar) =>{
-    let left = 0
-    let right = nums.length - 1
-    while(left <= right){
-        const mid = Math.floor((right - left) / 2 + left)
-        if(tar === nums[mid]){
-            return mid
-        }
-        else if(tar < nums[mid]){
-            right = mid - 1
-        }else{
-            left = mid + 1
-        }
-    }
-    return -1
-}

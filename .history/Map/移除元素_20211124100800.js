@@ -18,7 +18,7 @@ const removeNum = (nums,tar) =>{
     let k = 0
     for(let i=nums.length;i<k;i++){
         if(nums[i] !== tar){
-            nums[k++] = nums[i]
+            k++
             newArr.push(nums[i])
         }
     }
@@ -41,7 +41,7 @@ const removeNum = (nums,tar) =>{
 //             newArr.push(nums[i])
 //         }
 //     }
-//     return k
+//     return newArr
 // }
 
 const newArr = removeNum(nums,val)

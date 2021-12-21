@@ -13,36 +13,36 @@
 const nums = [0,1,2,2,3,0,4,2]
 const val = 2
 
-const removeNum = (nums,tar) =>{
-    let newArr = []
-    let k = 0
-    for(let i=nums.length;i<k;i++){
-        if(nums[i] !== tar){
-            nums[k++] = nums[i]
-            newArr.push(nums[i])
-        }
-    }
-    return k
-}
-
-
-
-
-
-
-
-
-// const removeNum = (nums,val) =>{
-//     let k = 0
+// const removeNum = (nums,tar) =>{
 //     let newArr = []
-//     for(let i=0;i<nums.length;i++){
-//         if(nums[i] != val){
+//     let k = 0
+//     for(let i=nums.length;i<k;i++){
+//         if(nums[i] !== tar){
 //             nums[k++] = nums[i]
 //             newArr.push(nums[i])
 //         }
 //     }
 //     return k
 // }
+
+
+
+
+
+
+
+
+const removeNum = (nums,val) =>{
+    let k = 0
+    let newArr = []
+    for(let i=0;i<nums.length;i++){
+        if(nums[i] != val){
+            nums[k++] = nums[i]
+            newArr.push(nums[i])
+        }
+    }
+    return k
+}
 
 const newArr = removeNum(nums,val)
 console.log(newArr)
