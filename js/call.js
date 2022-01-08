@@ -81,3 +81,20 @@ bar.myCall(foo,'zhangsan',18)
 bar.myApply(foo,['zhangsan','lisi'])
 
 
+
+
+Function.prototype.call = function (context){
+    let cont = context || window
+    cont.fn = this
+    let args = [...arguments].slice(1)
+    cont[fn](...args)
+    delete cont[fn]
+}
+
+Function.prototype.bind = function (content){
+    let self = this
+    let args = [...arguments].slice(1)
+    return function (){
+        return self.apply(content,args)
+    }
+}

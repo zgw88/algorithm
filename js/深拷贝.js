@@ -1,0 +1,63 @@
+function isObject(val){
+    return typeof val === 'object' && val !==null
+}
+
+function deepClone(obj,hash = new WeakMap()){
+    if(!isObject(obj)) return obj;
+    if(hash.has(obj)) return hash.get(obj)
+    const newObj = Array.isArray(obj) ? [] : {}
+    hash.set(obj,newObj)
+    for (let key in obj){
+        if(Object.prototype.hasOwnProperty.call(obj,key)){
+            if(isObject(obj[key])){
+                newObj[key] = deepClone(obj[key],hash)
+            }else {
+                newObj[key] = obj[key]
+            }
+        }
+    }
+    return newObj
+}
+
+let a = {a: 1,b:{c:2,d:{e:'sss',f:'fffdd'}}}
+
+let dd = deepClone(a)
+
+console.log(dd)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function isObject (obj){
+//     return obj !== null && typeof obj === 'object'
+// }
+//
+// function deepClone(obj,hash = new WeakMap()){
+//     if(!isObject(obj)) return obj
+//     if(hash.has(obj)) return hash.get(obj)
+//     let newObj = Array.isArray(obj) ? [] : {}
+//     hash.set(obj,newObj)
+//     for(let key in obj){
+//         if(Object.prototype.hasOwnProperty.call(obj,key)){
+//             if(isObject(obj[key])){
+//                 newObj[key] = deepClone(obj[key],hash)
+//             }else {
+//                 newObj[key] = obj[key]
+//             }
+//         }
+//     }
+//     return newObj
+// }
