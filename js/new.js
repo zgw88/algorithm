@@ -5,11 +5,31 @@
 // 使用 apply，改变构造函数 this 的指向到新建的对象，这样 obj 就可以访问到构造函数中的属性
 // 返回 obj
 
-function _new(){
+// function _new(){
+//     let newObj = Object.create(null)
+//     let args = [].slice.call(arguments)
+//     let constructor = args.shift()
+//     newObj.__proto__ = constructor.prototype
+//     let res = constructor.apply(newObj,args)
+//     return typeof  res === 'object' && res !== null ? res : newObj
+// }
+
+function __news(){
+    let newObj = Object.create(null)
+    let args = [].slice.call(arguments)
+    let content = args.shift()
+    newObj.__proto__ = content.prototype
+    let res = content.apply(newObj,args)
+    return res === 'object' && res !== null ? res : newObj
+}
+
+
+function __new(){
     let newObj = Object.create(null)
     let args = [].slice.call(arguments)
     let constructor = args.shift()
     newObj.__proto__ = constructor.prototype
     let res = constructor.apply(newObj,args)
-    return typeof  res === 'object' && res !== null ? res : newObj
+    return res === 'object' && res !== null ? res : newObj
 }
+

@@ -98,3 +98,31 @@ Function.prototype.bind = function (content){
         return self.apply(content,args)
     }
 }
+
+
+
+
+Function.prototype.call = function (obj){
+    let content = obj || window
+    content[fn] = this
+    let args = [...arguments].slice(1)
+    content[fn](...args)
+    delete content[fn]
+}
+
+Function.prototype.apply = function (obj){
+    let content = obj || window
+    content[fn] = this
+    let args = [...arguments].slice(1)
+    content[fn](args)
+    delete content[fn]
+}
+
+Function.prototype.bind = function (obj){
+    let self = this
+    let args = [...arguments].slice(1)
+    return function (){
+        let newArgs = [...arguments].concat(args)
+        self.apply(obj,newArgs)
+    }
+}

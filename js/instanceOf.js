@@ -19,7 +19,7 @@ function my_instanceOf(leftVal,rightVal){
 }
 
 
-function myInstanceOf (left,right){
+function instanceOfs(left,right){
     let rightVal = right.prototype
     let leftVal = left.__proto__
     while (true){

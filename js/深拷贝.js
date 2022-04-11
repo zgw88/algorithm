@@ -27,6 +27,26 @@ console.log(dd)
 
 
 
+function _deepClone (obj,hash = new WeakMap()){
+    if(!isObject(obj)) return obj
+    if(hash.has(obj)) return hash.get(obj)
+    let newObj = Array.isArray(obj) ? [] : {}
+    hash.set(newObj,obj)
+    for (let key of obj){
+        if(Object.prototype.hasOwnProperty.call(obj,key)){
+            if(typeof obj[key] === 'object'){
+                newObj[key] = _deepClone(obj[key],hash)
+            }else{
+                newObj[key] = obj[key]
+            }
+        }
+    }
+    return newObj
+}
+
+
+
+
 
 
 

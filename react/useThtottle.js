@@ -20,3 +20,24 @@ const useThrottle = (fn,ms=30,pres=[]) =>{
 }
 
 export default useThrottle
+
+
+
+function useThrottle(fn,ms = 30,deps){
+    const [timer,setTime] = useState(ms)
+    let previous = useRef()
+
+    useEffect(()=>{
+        let now = new Date()
+        if(now - previous.current > timer){
+            fn()
+            previous.current = now
+        }
+    },deps)
+
+    const cancel = () =>{
+        setTime(0)
+    }
+
+    return [cancel]
+}

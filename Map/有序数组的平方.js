@@ -17,21 +17,21 @@
 // 如果A[i] * A[i] >= A[j] * A[j] 那么result[k--] = A[i] * A[i]; 。
 
 const nums = [-4,-1,0,3,10];
-const sortSquares = (nums) =>{
-    let res = []
-    for (let i=0, j = nums.length - 1;i<= j;){
-        const left = Math.abs(nums[i]);
-        const right = Math.abs(nums[j]);
-        if(left < right){
-            res.unshift(right * right)
-            j--
-        }else{
-            res.unshift(left * left)
-            i++
-        }
-    }
-    return res
-}
+// const sortSquares = (nums) =>{
+//     let res = []
+//     for (let i=0, j = nums.length - 1;i<= j;){
+//         const left = Math.abs(nums[i]);
+//         const right = Math.abs(nums[j]);
+//         if(left < right){
+//             res.unshift(right * right)
+//             j--
+//         }else{
+//             res.unshift(left * left)
+//             i++
+//         }
+//     }
+//     return res
+// }
 
 
 const sortSquers = (nums) =>{
@@ -53,3 +53,24 @@ const sortSquers = (nums) =>{
 
 const newArr = sortSquers(nums)
 console.log(newArr,'newArr 112')
+
+
+
+const sorts = (nums) =>{
+    let res = []
+    for (let i=0,j= nums.length - 1;i <= j; ) {
+        let left = Math.abs(nums[i])
+        let right = Math.abs(nums[j])
+        if(left < right){
+            res.unshift( right * right )
+            j--
+        }else {
+            res.unshift( left * left )
+            i++
+        }
+    }
+    return res
+}
+
+const newArrs = sorts(nums)
+console.log(newArrs,'newArrs 112')

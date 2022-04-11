@@ -74,3 +74,69 @@ promise.then(data => {
 // promise.then(data => {
 //     console.log(`2: ${data}`)
 // })
+
+
+
+
+
+function Promises(excuter){
+    this.status = 'pending'
+    this.value = null
+    this.reason = null
+    this.onFuilledFuc = []
+    this.onRejectedFuc = []
+
+    const resolve = (value) =>{
+        if(resolve instanceof Promise){
+            return value.then(resolve,reject)
+        }
+        setTimeout(()=>{
+            if(this.status === 'pending'){
+                this.status = 'fuilled'
+                this.value = value
+
+                this.onFuilledFuc.forEach(cb =>{
+                    cb.apply(this,this.value)
+                })
+            }
+        })
+    }
+
+
+    const reject = (reason) =>{
+        setTimeout(()=>{
+            if(this.status === 'pending'){
+                this.status = 'rejected'
+                this.reason = reason
+
+                this.onRejectedFuc.forEach(cb =>{
+                    cb.apply(this,this.reason)
+                })
+            }
+        })
+    }
+
+    try {
+        excuter(resolve,reject())
+    }catch (e) {
+        reject(e)
+    }
+}
+
+Function.prototype.thens = function (onfuilled,onRejected){
+    onfuilled = typeof onfuilled === 'function' ? onfuilled : data => data
+    onRejected = typeof onRejected === 'function' ? onRejected : error => {throw error}
+
+    if(this.status === 'fuilled'){
+        onfuilled(this.value)
+    }
+
+    if(this.status === 'rejected'){
+        onRejectedFuc(this.reason)
+    }
+
+    if(this.status === 'pending'){
+        this.onFuilledFuc.push(onfuilled)
+        this.onRejectedFuc.push(onRejected)
+    }
+}
