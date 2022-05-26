@@ -2,6 +2,9 @@
 // 该构造函数很简单，它只有一个参数，按照 Promise/A+ 规范的命名，
 // 把 Promise 构造函数的参数叫做 executor，executor 类型为函数。
 // 这个函数又“自动”具有 resolve、reject 两个方法作为参数。
+// promise.all里面有一个promise是reject的话，其他resolve的结果也不会返回 可以用promise.allSettled
+// 该Promise.allSettled()方法返回一个在所有给定的promise都已经fulfilled或rejected后的promise，并带有一个对象数组，每个对象表示对应的promise结果
+
 
 function Promise(executor){
     this.status = 'pending'
