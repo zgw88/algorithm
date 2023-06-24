@@ -24,12 +24,22 @@ function __news(){
 }
 
 
-function __new(){
-    let newObj = Object.create(null)
+function newa () {
+    /**
+     * 1 创建一个对象 并取出arguments
+     * 2 将此对象的__proto__指向构造函数的 prototype
+     * 3 为此对象添加属性和方法
+     * 4 返回对象
+     */
+    let obj = Object.create(null)
     let args = [].slice.call(arguments)
     let constructor = args.shift()
-    newObj.__proto__ = constructor.prototype
-    let res = constructor.apply(newObj,args)
-    return res === 'object' && res !== null ? res : newObj
+    obj.__proto__ = constructor.prototype
+    let res = constructor.apply(obj, args)
+    return res === 'object' && res !== null ? res : obj
 }
+
+
+
+
 

@@ -35,6 +35,8 @@ function add1(x,y,z){
     return x + y + z
 }
 
+const currys3 = (fn, ...args) => args.length >= fn.length ? fn(...args) : (..._args) => currys3(fn, ...args, ..._args)
+
 const handleAdd = curry3(add1)
 
 console.log(handleAdd,'handleAdd')

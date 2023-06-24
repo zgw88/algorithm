@@ -44,15 +44,22 @@ function _deepClone (obj,hash = new WeakMap()){
     return newObj
 }
 
+function isObject(obj) {
+    return obj !== null && typeof obj === 'object'
+}
 
-
-
-
-
-
-
-
-
+function deepClones (obj) {
+    if(!isObject(obj)) return
+    let newObj = Array.isArray(obj) ? [] : {}
+    
+    for(let key in obj){
+        if(isObject(obj[key])){
+            newObj[key] = deepClones(obj[key])
+        }else {
+            newObj[key] = obj[key]
+        }
+    }
+}
 
 
 

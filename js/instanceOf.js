@@ -19,16 +19,14 @@ function my_instanceOf(leftVal,rightVal){
 }
 
 
-function instanceOfs(left,right){
-    let rightVal = right.prototype
-    let leftVal = left.__proto__
-    while (true){
-        if(leftVal === null){
-            return false
-        }
-        if(leftVal === rightVal){
-            return true
-        }
-        leftVal = leftVal.__proto__
+
+function instanceOf1(left,right) {
+    let pro = left.__proto__
+    let rightPro = right.prototype
+
+    while (true) {
+        if(pro === rightPro) return true
+        if(pro === null) return false
+        pro = pro.__proto__
     }
 }

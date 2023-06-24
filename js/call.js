@@ -91,16 +91,6 @@ Function.prototype.call = function (context){
     delete cont[fn]
 }
 
-Function.prototype.bind = function (content){
-    let self = this
-    let args = [...arguments].slice(1)
-    return function (){
-        return self.apply(content,args)
-    }
-}
-
-
-
 
 Function.prototype.call = function (obj){
     let content = obj || window
@@ -123,6 +113,18 @@ Function.prototype.bind = function (obj){
     let args = [...arguments].slice(1)
     return function (){
         let newArgs = [...arguments].concat(args)
-        self.apply(obj,newArgs)
+        return self.apply(obj,newArgs)
+    }
+}
+
+
+
+Function.prototype.MyBind1 = function (obj) {
+    let self = this
+    let args = [...arguments].slice(1)
+
+    return function() {
+        let arg = [...arguments].concat(args)
+        return self.apply(obj,arg)
     }
 }

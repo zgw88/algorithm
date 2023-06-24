@@ -79,67 +79,39 @@ promise.then(data => {
 // })
 
 
-
-
-
-function Promises(excuter){
-    this.status = 'pending'
-    this.value = null
-    this.reason = null
-    this.onFuilledFuc = []
-    this.onRejectedFuc = []
-
-    const resolve = (value) =>{
-        if(resolve instanceof Promise){
-            return value.then(resolve,reject)
+// promise all
+function PromiseAll (promises){
+    return new Promise((resolve, reject) =>{
+        if(!Array.isArray[promises]) {
+            throw error('不是一个数组')
         }
-        setTimeout(()=>{
-            if(this.status === 'pending'){
-                this.status = 'fuilled'
-                this.value = value
+        let resolveCounter = 0
+        let promiseNum = promises.length
+        let promiseResult = []
 
-                this.onFuilledFuc.forEach(cb =>{
-                    cb.apply(this,this.value)
-                })
+        for(let i = 0; i<promiseNum; i++){
+            Promise.resolve(promises[i].then(value => {
+                resolveCounter ++
+                promiseResult[i] = value
+                if(resolveCounter === promiseNum){
+                    return resolve(promiseResult)
+                }
+            },
+            error =>{
+                return reject(error)
             }
-        })
-    }
-
-
-    const reject = (reason) =>{
-        setTimeout(()=>{
-            if(this.status === 'pending'){
-                this.status = 'rejected'
-                this.reason = reason
-
-                this.onRejectedFuc.forEach(cb =>{
-                    cb.apply(this,this.reason)
-                })
-            }
-        })
-    }
-
-    try {
-        excuter(resolve,reject())
-    }catch (e) {
-        reject(e)
-    }
+            ))
+        }
+    })
 }
 
-Function.prototype.thens = function (onfuilled,onRejected){
-    onfuilled = typeof onfuilled === 'function' ? onfuilled : data => data
-    onRejected = typeof onRejected === 'function' ? onRejected : error => {throw error}
 
-    if(this.status === 'fuilled'){
-        onfuilled(this.value)
-    }
 
-    if(this.status === 'rejected'){
-        onRejectedFuc(this.reason)
-    }
-
-    if(this.status === 'pending'){
-        this.onFuilledFuc.push(onfuilled)
-        this.onRejectedFuc.push(onRejected)
-    }
+// promise race
+Promise.race = function(promises){
+    return new Promise((resolve,reject) =>{
+        for(let i=0; i<promises.length; i++){
+            promises[i].then(resolve,reject)
+        }
+    })
 }
