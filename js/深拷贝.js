@@ -49,14 +49,21 @@ function isObject(obj) {
 }
 
 function deepClones (obj) {
-    if(!isObject(obj)) return
-    let newObj = Array.isArray(obj) ? [] : {}
+    if(!isObject(obj)) { return obj }
+    let newObj
+    if(obj instanceof Date) {
+        newObj = new Date(obj.getTime())
+    }else if(obj instanceof RegExp) {
+        newObj = new RegExp(obj)
+    }else {
+       newObj = Array.isArray(obj) ? [] : {}
     
-    for(let key in obj){
-        if(isObject(obj[key])){
-            newObj[key] = deepClones(obj[key])
-        }else {
-            newObj[key] = obj[key]
+        for(let key in obj){
+            if(isObject(obj[key])){
+                newObj[key] = deepClones(obj[key])
+            }else {
+                newObj[key] = obj[key]
+            }
         }
     }
 }

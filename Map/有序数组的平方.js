@@ -33,7 +33,17 @@ const nums = [-4,-1,0,3,10];
 //     return res
 // }
 
-
+/**
+ * 
+ * @param {*sortSquers} nums 
+ * @returns 
+ * 有序数组的平方 利用双指针遍历判断最左指针（i）的绝对值是否小于最右指针（J）的绝对真
+ * I从第0项开始，J从第length - 1 项开始
+ * 如果小于的话 就把最右指针的数放入数组头部 J--
+ * 如果大于的话就把 就把最左指针的数放入数组头部 I++
+ * 
+ * 
+ */
 const sortSquers = (nums) =>{
     let newArr = []
     for (let i=0,j=nums.length - 1;i<=j;){
@@ -73,4 +83,4 @@ const sorts = (nums) =>{
 }
 
 const newArrs = sorts(nums)
-console.log(newArrs,'newArrs 112')
+console.log(newArrs,'newArrs 1125')

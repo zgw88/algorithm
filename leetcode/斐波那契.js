@@ -53,11 +53,12 @@ function F3(n){
     db[0] = db[1] = 1
     for (let i = 2,len = db.length;i<len;i++){
         db[i] = db[i - 1] + db[i - 2]
+        console.log(db[i],'ii')
     }
     return db[n]
 }
 
-const res = F3(100)
+const res = F3(10)
 console.time('F')
 console.log(res,'35')
 console.timeEnd('F')
